@@ -1,0 +1,30 @@
+syntax = "proto3";
+package areaMessage;
+option go_package = "./";
+
+//圆半径
+message Roundness {
+  float R = 1;
+}
+
+//矩形长宽
+message Rectangle {
+  float Width = 1;
+  float High = 2;
+}
+
+message AreaInfo{
+  float Area = 1;
+}
+
+
+//计算圆面积服务service定义
+service RoundnessAreaService {
+  rpc GetRoundnessAreaInfos(stream Roundness) returns (stream AreaInfo){};
+
+}
+
+//计算矩形面积service定义
+service RectangleAreaService {
+  rpc GetRectangleAreaInfos(stream Rectangle) returns (stream AreaInfo){};
+}
