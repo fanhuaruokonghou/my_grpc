@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "context";
+package messageToken;
+option go_package = "./";
+//计算加法请求参数
+message NumberRequest {
+  int64 Arge1 = 1;
+  int64 Arge2 = 2;
+}
+
+//订单信息
+message AddInfo {
+  int64 Result = 1;
+}
+
+//订单服务service定义
+service AddService {
+  rpc GetAddInfos (stream NumberRequest) returns (stream AddInfo) {}; //服务端流模式
+}

@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	cred, err := credentials.NewServerTLSFromFile("/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.pem", "/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.key")
+	cred, err := credentials.NewServerTLSFromFile("./Key/server.pem", "./Key/server.key")
 	if err != nil {
 		grpclog.Fatal("加载证书失败", err)
 	}

@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	creds,err:=credentials.NewClientTLSFromFile("/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.pem","*.fanhua.com")
+	creds, err := credentials.NewClientTLSFromFile("./Key/server.pem", "*.fanhua.com")
 	if err != nil {
 		panic(err.Error())
 	}

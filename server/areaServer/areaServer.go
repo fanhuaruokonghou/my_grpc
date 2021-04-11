@@ -75,7 +75,7 @@ func (r *rectangleImpl) Send(re *am.AreaInfo) error {
 
 func (r rectangleImpl) Recv() (*am.Rectangle, error) {
 	m := new(am.Rectangle)
-	if err := r.ServerStream.SendMsg(m); err != nil {
+	if err := r.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
@@ -92,7 +92,7 @@ func (ro *roundnessImpl) GetRoundnessAreaInfos(stream am.RoundnessAreaService_Ge
 			panic(err.Error())
 			return nil
 		}
-		fmt.Printf("读取到的圆的半径%.2f\n",areaRequest.GetR())
+		fmt.Printf("读取到的圆的半径%.2f\n", areaRequest.GetR())
 		m := new(am.Roundness)
 		m.R = areaRequest.GetR()
 		result, err := ro.Area(m)

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	cred, err := credentials.NewServerTLSFromFile("/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.pem", "/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.key")
+	cred, err := credentials.NewServerTLSFromFile("./Key/server.pem", "./Key/server.key")
 	if err != nil {
 		grpclog.Fatal("服务端证书加载失败：", err.Error())
 	}
@@ -19,7 +19,7 @@ func main() {
 
 	am.RegisterRoundnessAreaServiceServer(server, as.NewRoundness())
 	am.RegisterRectangleAreaServiceServer(server, as.NewRectangle())
-	listen, err := net.Listen("tcp", ":8080")
+	listen, err := net.Listen("tcp", ":8081")
 	if err != nil {
 		panic(err.Error())
 	}

@@ -139,13 +139,13 @@ var file_messageToken_proto_rawDesc = []byte{
 	0x65, 0x32, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x41, 0x72, 0x67, 0x65, 0x32, 0x22,
 	0x21, 0x0a, 0x07, 0x41, 0x64, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x16, 0x0a, 0x06, 0x52, 0x65,
 	0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x52, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x32, 0x59, 0x0a, 0x0c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x12, 0x49, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x6e,
-	0x66, 0x6f, 0x73, 0x12, 0x1b, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b,
-	0x65, 0x6e, 0x2e, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x15, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x2e,
-	0x41, 0x64, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x04, 0x5a,
-	0x02, 0x2e, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x74, 0x32, 0x55, 0x0a, 0x0a, 0x41, 0x64, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x47, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x41, 0x64, 0x64, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x12,
+	0x1b, 0x2e, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x2e, 0x4e,
+	0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x6d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x2e, 0x41, 0x64, 0x64, 0x49,
+	0x6e, 0x66, 0x6f, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x04, 0x5a, 0x02, 0x2e, 0x2f, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -166,8 +166,8 @@ var file_messageToken_proto_goTypes = []interface{}{
 	(*AddInfo)(nil),       // 1: messageToken.AddInfo
 }
 var file_messageToken_proto_depIdxs = []int32{
-	0, // 0: messageToken.OrderService.GetOrderInfos:input_type -> messageToken.NumberRequest
-	1, // 1: messageToken.OrderService.GetOrderInfos:output_type -> messageToken.AddInfo
+	0, // 0: messageToken.AddService.GetAddInfos:input_type -> messageToken.NumberRequest
+	1, // 1: messageToken.AddService.GetAddInfos:output_type -> messageToken.AddInfo
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -234,45 +234,45 @@ var _ grpc.ClientConnInterface
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion6
 
-// OrderServiceClient is the client API for OrderService service.
+// AddServiceClient is the client API for AddService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type OrderServiceClient interface {
-	GetOrderInfos(ctx context.Context, opts ...grpc.CallOption) (OrderService_GetOrderInfosClient, error)
+type AddServiceClient interface {
+	GetAddInfos(ctx context.Context, opts ...grpc.CallOption) (AddService_GetAddInfosClient, error)
 }
 
-type orderServiceClient struct {
+type addServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOrderServiceClient(cc grpc.ClientConnInterface) OrderServiceClient {
-	return &orderServiceClient{cc}
+func NewAddServiceClient(cc grpc.ClientConnInterface) AddServiceClient {
+	return &addServiceClient{cc}
 }
 
-func (c *orderServiceClient) GetOrderInfos(ctx context.Context, opts ...grpc.CallOption) (OrderService_GetOrderInfosClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_OrderService_serviceDesc.Streams[0], "/messageToken.OrderService/GetOrderInfos", opts...)
+func (c *addServiceClient) GetAddInfos(ctx context.Context, opts ...grpc.CallOption) (AddService_GetAddInfosClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_AddService_serviceDesc.Streams[0], "/messageToken.AddService/GetAddInfos", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &orderServiceGetOrderInfosClient{stream}
+	x := &addServiceGetAddInfosClient{stream}
 	return x, nil
 }
 
-type OrderService_GetOrderInfosClient interface {
+type AddService_GetAddInfosClient interface {
 	Send(*NumberRequest) error
 	Recv() (*AddInfo, error)
 	grpc.ClientStream
 }
 
-type orderServiceGetOrderInfosClient struct {
+type addServiceGetAddInfosClient struct {
 	grpc.ClientStream
 }
 
-func (x *orderServiceGetOrderInfosClient) Send(m *NumberRequest) error {
+func (x *addServiceGetAddInfosClient) Send(m *NumberRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *orderServiceGetOrderInfosClient) Recv() (*AddInfo, error) {
+func (x *addServiceGetAddInfosClient) Recv() (*AddInfo, error) {
 	m := new(AddInfo)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -280,42 +280,42 @@ func (x *orderServiceGetOrderInfosClient) Recv() (*AddInfo, error) {
 	return m, nil
 }
 
-// OrderServiceServer is the server API for OrderService service.
-type OrderServiceServer interface {
-	GetOrderInfos(OrderService_GetOrderInfosServer) error
+// AddServiceServer is the server API for AddService service.
+type AddServiceServer interface {
+	GetAddInfos(AddService_GetAddInfosServer) error
 }
 
-// UnimplementedOrderServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedOrderServiceServer struct {
+// UnimplementedAddServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedAddServiceServer struct {
 }
 
-func (*UnimplementedOrderServiceServer) GetOrderInfos(OrderService_GetOrderInfosServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetOrderInfos not implemented")
+func (*UnimplementedAddServiceServer) GetAddInfos(AddService_GetAddInfosServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetAddInfos not implemented")
 }
 
-func RegisterOrderServiceServer(s *grpc.Server, srv OrderServiceServer) {
-	s.RegisterService(&_OrderService_serviceDesc, srv)
+func RegisterAddServiceServer(s *grpc.Server, srv AddServiceServer) {
+	s.RegisterService(&_AddService_serviceDesc, srv)
 }
 
-func _OrderService_GetOrderInfos_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(OrderServiceServer).GetOrderInfos(&orderServiceGetOrderInfosServer{stream})
+func _AddService_GetAddInfos_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AddServiceServer).GetAddInfos(&addServiceGetAddInfosServer{stream})
 }
 
-type OrderService_GetOrderInfosServer interface {
+type AddService_GetAddInfosServer interface {
 	Send(*AddInfo) error
 	Recv() (*NumberRequest, error)
 	grpc.ServerStream
 }
 
-type orderServiceGetOrderInfosServer struct {
+type addServiceGetAddInfosServer struct {
 	grpc.ServerStream
 }
 
-func (x *orderServiceGetOrderInfosServer) Send(m *AddInfo) error {
+func (x *addServiceGetAddInfosServer) Send(m *AddInfo) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *orderServiceGetOrderInfosServer) Recv() (*NumberRequest, error) {
+func (x *addServiceGetAddInfosServer) Recv() (*NumberRequest, error) {
 	m := new(NumberRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -323,14 +323,14 @@ func (x *orderServiceGetOrderInfosServer) Recv() (*NumberRequest, error) {
 	return m, nil
 }
 
-var _OrderService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "messageToken.OrderService",
-	HandlerType: (*OrderServiceServer)(nil),
+var _AddService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "messageToken.AddService",
+	HandlerType: (*AddServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetOrderInfos",
-			Handler:       _OrderService_GetOrderInfos_Handler,
+			StreamName:    "GetAddInfos",
+			Handler:       _AddService_GetAddInfos_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

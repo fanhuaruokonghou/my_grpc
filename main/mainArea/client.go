@@ -10,14 +10,16 @@ import (
 )
 
 func main() {
-	cred, err := credentials.NewClientTLSFromFile("/Users/wenpanpan/Desktop/go_source/my_grpc/Key/server.pem", "*.fanhua.com")
+	cred, err := credentials.NewClientTLSFromFile("./Key/server.pem", "*.fanhua.com")
 	if err != nil {
 		panic(err.Error())
 	}
-	conn, err := grpc.Dial("localhost:8080", grpc.WithTransportCredentials(cred))
+	conn, err := grpc.Dial("localhost:8081", grpc.WithTransportCredentials(cred))
 	if err != nil {
 		panic(err.Error())
 	}
+
+	defer conn.Close()
 
 	roundnessServiceClient := am.NewRoundnessAreaServiceClient(conn)
 	rectangleServiceClient := am.NewRectangleAreaServiceClient(conn)
@@ -55,6 +57,7 @@ func main() {
 			break
 		}
 		if err != nil {
+			fmt.Println("err!=nil")
 			break
 		}
 		fmt.Println("读取到圆面积计算结果：", area)
